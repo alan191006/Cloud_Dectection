@@ -4,9 +4,8 @@ import numpy as np
 from torch import nn
 from PIL import Image
 from pathlib import Path
-from torch.nn.utils import prune
 from memory_profiler import profile
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import Dataset
 
 RED_PTH = "/home/alan/Documents/cloud_detection_data/95Cloud/95red/"
 IMG = ("/home/alan/Documents/cloud_detection_data/95Cloud/95red/red_patch_45_3_by_5_LC08_L1TP_034047_20160520_20170324_01_T1.TIF", "", "")
@@ -16,6 +15,7 @@ RED_PTH_ = Path(RED_PTH)
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 MODEL_PATH = "/home/alan/Documents/Cloud_Detection/neural network/c_unet_1649683131.7209947.pth"
+PRUNE_PATH = "/home/alan/Documents/Cloud_Detection/experimental/c_unet_prune_15_1650422482.0542505.pth"
 
 # Model architect
 class depthwiseSeparableConv(nn.Module):
@@ -88,35 +88,7 @@ c_unet.to(DEVICE)
 model.to(DEVICE)
 
 c_unet.load_state_dict(torch.load(MODEL_PATH))
-model.load_state_dict(torch.load(MODEL_PATH))
-
-param_to_prune = (
-    (model.conv1[0].depthwise, "weight"),
-    (model.conv1[0].pointwise, "weight"),
-
-    (model.conv2[0].depthwise, "weight"),
-    (model.conv2[0].pointwise, "weight"),
-
-    (model.conv3[0].depthwise, "weight"),
-    (model.conv3[0].pointwise, "weight"),
-
-    (model.upconv3[0], "weight"),
-    (model.upconv3[3], "weight"),
-
-    (model.upconv2[0], "weight"),
-    (model.upconv2[3], "weight"),
-
-    (model.upconv1[0], "weight"),
-    (model.upconv1[3], "weight"),
-
-    (model.out[0], "weight")
-)
-
-prune.global_unstructured(
-    param_to_prune,
-    pruning_method=prune.L1Unstructured,
-    amount=0.15,
-)
+model.load_state_dict(torch.load(PRUNE_PATH))
 
 class CloudDataset(Dataset):
     def __init__(self, r_dir, g_dir, b_dir, nir_dir, gt_dir, file_list):
