@@ -1,14 +1,13 @@
 import csv
 import time
-import torch 
 import numpy as np
 from jtop import jtop
-from onnx_helper import ONNXClassifierWrapper
+from utils.onnx_helper import ONNXClassifierWrapper
 
 LOGGING_TIME = 30
 EXECUTION_TIME = 3600
-MODEL_PTH = "/home/lux/Desktop/Cloud_detection/model_engine.trt"
-CSV_PTH = "/home/lux/Desktop/log_trt.csv"
+MODEL_PTH = "./models/model_engine.trt"
+CSV_PTH = "./log_trt.csv"
 
 OUTPUT_DIM = [1, 2, 384, 384]
 model = ONNXClassifierWrapper("model_engine.trt", OUTPUT_DIM)

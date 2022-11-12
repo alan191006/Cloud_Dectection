@@ -1,0 +1,6 @@
+numpy
+opencv-python
+matplotlib
+jetson-stats
+Cython
+'pycuda<2021.1'

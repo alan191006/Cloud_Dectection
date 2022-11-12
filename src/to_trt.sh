@@ -1,0 +1,1 @@
+trtexec --onnx=./models/model.onnx --saveEngine=./models/model_engine.trt
