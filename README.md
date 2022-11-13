@@ -3,8 +3,8 @@
 Cloud segmentation in satellite imagery. 
 
 ### Datasets used:
-* Cloud 38, A Cloud Segmentation Dataset: [GitHub](https://github.com/SorourMo/38-Cloud-A-Cloud-Segmentation-Dataset) 
-* Cloud 95, An Extension to 38 Cloud Dataset: [GitHub](https://github.com/SorourMo/95-Cloud-An-Extension-to-38-Cloud-Dataset) 
+* 38 Cloud, A Cloud Segmentation Dataset: [GitHub](https://github.com/SorourMo/38-Cloud-A-Cloud-Segmentation-Dataset) 
+* 95 Cloud, An Extension to 38 Cloud Dataset: [GitHub](https://github.com/SorourMo/95-Cloud-An-Extension-to-38-Cloud-Dataset) 
 
 ---
 
@@ -20,7 +20,7 @@ Install the required library. If installation is unsuccessful with PyCUDA, refer
  python3 -m pip install -r requirements.txt
  ```
 
-The `src/to_trt.sh` compile the model to a Jetson-optimized version which will be used for inference.  
+The `./src/to_trt.sh` compile the model to a Jetson-optimized version which will be used for inference.  
 Give execute permission: 
  ```bash
 chmod +x ./src/to_trt.sh
