@@ -1,3 +1,12 @@
+# Private file
+
+DeepLabV3_ResNet50.pth
+DeepLabV3_ResNet50.onnx
+FCN_ResNet50.pth
+FCN_ResNet50.onnx
+resources_consumption.py
+remove_blank.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -92,3 +101,6 @@ target/
 
 # Hydra logs
 outputs
+
+*.TIF
+*.tif

@@ -20,18 +20,12 @@ Install the required library. If installation is unsuccessful with PyCUDA, refer
  python3 -m pip install -r requirements.txt
  ```
 
-The `./src/to_trt.sh` compile the model to a Jetson-optimized version which will be used for inference.  
-Give execute permission: 
+Use trtexec command to compile the model to a Jetson-optimized version which will be used for inference: 
  ```bash
-chmod +x ./src/to_trt.sh
- ```
-
-Run: 
- ```bash
-./src/to_trt.sh
+trtexec --onnx=./models/ONNX/model.onnx --saveEngine=./models/TRT/model_engine.trt
  ```
 
 For inference, execute the code below. The prediction will be store in the `./output` folder with the same name as the original image. 
  ```bash
-python3 ./src/predict.py [path/to/image]
+python3 ./src/predict.py -m [path/to/model] -i [path/to/image]
  ```
